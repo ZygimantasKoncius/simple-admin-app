@@ -1,0 +1,178 @@
+<template name="dashboard">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link logout" href="#">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container text-center mt-5">
+            <h1>Welcome, {{currentUser.username}}!</h1>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <!-- Area Chart Example-->
+        <div class="card mb-3">
+            <div class="card-header">
+                <i class="fa fa-area-chart"></i> Area Chart Example
+            </div>
+            <div class="card-body">
+                <canvas id="myAreaChart" width="100%" height="30"></canvas>
+            </div>
+            <div class="card-footer small text-muted">Example made 23/04/2018</div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8">
+                <!-- Example Bar Chart Card-->
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <i class="fa fa-bar-chart"></i> Bar Chart Example
+                    </div>
+                    <div class="card-body">
+                        <canvas id="myBarChart" width="100" height="50"></canvas>
+                    </div>
+                    <div class="card-footer small text-muted">Example made 23/04/2018</div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <!-- Example Pie Chart Card-->
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <i class="fa fa-pie-chart"></i> Pie Chart Example
+                    </div>
+                    <div class="card-body">
+                        <canvas id="myPieChart" width="100%" height="100"></canvas>
+                    </div>
+                    <div class="card-footer small text-muted">Example made 23/04/2018</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Chart.js scripts
+        // -- Set new default font family and font color to mimic Bootstrap's default styling
+        Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+        Chart.defaults.global.defaultFontColor = '#292b2c';
+        // -- Area Chart Example
+        var ctx = document.getElementById("myAreaChart");
+        var labels1 = [];
+        var data1 = [10000, 30162, 26263, 18394, 18287, 28682, 31274, 33259, 25849, 24159, 32651, 31984, 38451];
+        var n = Math.ceil(Math.random()*25);
+        for(var i=0; i<n; i++) {
+            labels1[i] = "Rand " + (i+1);
+            data1[i] = Math.random()*100000;
+        }
+        var myLineChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels1,
+                datasets: [{
+                    label: "Number",
+                    lineTension: 0.3,
+                    backgroundColor: "rgba(2,117,216,0.2)",
+                    borderColor: "rgba(2,117,216,1)",
+                    pointRadius: 5,
+                    pointBackgroundColor: "rgba(2,117,216,1)",
+                    pointBorderColor: "rgba(255,255,255,0.8)",
+                    pointHoverRadius: 5,
+                    pointHoverBackgroundColor: "rgba(2,117,216,1)",
+                    pointHitRadius: 20,
+                    pointBorderWidth: 2,
+                    data: data1,
+                }],
+            },
+            options: {
+                scales: {
+                    xAxes: [{
+                        gridLines: {
+                            display: false
+                        },
+                        ticks: {
+                            maxTicksLimit: 25
+                        }
+                    }],
+                    yAxes: [{
+                        ticks: {
+                            min: 0,
+                            max: 100000,
+                            maxTicksLimit: 10
+                        },
+                        gridLines: {
+                            color: "rgba(0, 0, 0, .125)",
+                        }
+                    }],
+                },
+                legend: {
+                    display: false
+                }
+            }
+        });
+        var label2 = [];
+        var data2 = [];
+        n = Math.ceil(Math.random()*10);
+        for(var i=0; i<n; i++){
+            label2[i] = "Rand " + (i+1);
+            data2[i] = Math.random()*30000;
+        }
+        // -- Bar Chart Example
+        var ctx = document.getElementById("myBarChart");
+        var myLineChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: label2,
+                datasets: [{
+                    label: "Number",
+                    backgroundColor: "rgba(2,117,216,1)",
+                    borderColor: "rgba(2,117,216,1)",
+                    data: data2,
+                }],
+            },
+            options: {
+                scales: {
+                    xAxes: [{
+                        gridLines: {
+                            display: false
+                        },
+                        ticks: {
+                            maxTicksLimit: 10
+                        }
+                    }],
+                    yAxes: [{
+                        ticks: {
+                            min: 0,
+                            max: 30000,
+                            maxTicksLimit: 5
+                        },
+                        gridLines: {
+                            display: true
+                        }
+                    }],
+                },
+                legend: {
+                    display: false
+                }
+            }
+        });
+        var data3 = [];
+        for(var i=0; i<4; i++){
+            data3[i] = Math.random()*100;
+        }
+        // -- Pie Chart Example
+        var ctx = document.getElementById("myPieChart");
+        var myPieChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ["Blue", "Red", "Yellow", "Green"],
+                datasets: [{
+                    data: data3,
+                    backgroundColor: ['#007bff', '#dc3545', '#ffc107', '#28a745'],
+                }],
+            },
+        });
+    </script>
+</template>
