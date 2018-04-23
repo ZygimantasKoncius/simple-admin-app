@@ -8,3 +8,5 @@ To run just download the source code, install meteor and after going to the sour
 Afterwards just open localhost:3000 in your browser.
 
 Login and registration works, however doesn't display messages on failed attempts.
+
+The project uses SBAdmin template, which you can find here: https://startbootstrap.com/template-overviews/sb-admin/
