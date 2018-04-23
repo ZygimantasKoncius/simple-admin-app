@@ -5,4 +5,6 @@ To run just download the source code, install meteor and after going to the sour
 
 `meteor`
 
-and afterwards just open localhost:3000 in your browser
+Afterwards just open localhost:3000 in your browser.
+
+Login and registration works, however doesn't display messages on failed attempts.
